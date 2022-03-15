@@ -76,3 +76,11 @@ const getCountry = async (countryName) => {
 };
 
 // https://restcountries.com/v3.1/alpha/{code}
+
+const getNeighbour = async (countryCode) => {
+  const response = await fetch(
+    `https://restcountries.com/v3.1/alpha/${countryCode}`
+  );
+  const data = await response.json();
+  return data[0];
+};
