@@ -84,3 +84,16 @@ const getNeighbour = async (countryCode) => {
   const data = await response.json();
   return data[0];
 };
+
+const renderError = (msg) => {
+  const inputContainer = document.querySelector(".input-section");
+  const errorHtml = document.createElement("div");
+
+  errorHtml.classList.add("alert", "alert-danger", "alert-container");
+  errorHtml.innerText = msg;
+  inputContainer.insertAdjacentElement("beforeend", errorHtml);
+
+  setTimeout(() => {
+    errorHtml.remove();
+  }, 5000);
+};
