@@ -62,3 +62,17 @@ const renderCountry = (data, type = "country") => {
     neighbourDiv[0].insertAdjacentHTML("beforeend", neighbourHtml);
   }
 };
+
+const getCountry = async (countryName) => {
+  const response = await fetch(
+    `https://restcountries.com/v3.1/name/${countryName}`
+  );
+  console.log(response);
+  if (!response.ok) {
+    throw new Error(response.statusText);
+  }
+  const data = await response.jason();
+  return data[0];
+};
+
+// https://restcountries.com/v3.1/alpha/{code}
