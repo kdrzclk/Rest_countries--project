@@ -124,3 +124,11 @@ const viewCountry = async (countryName) => {
     renderError(error.message);
   }
 };
+
+const add = document.getElementById("search");
+add.addEventListener("click", () => {
+  const main = document.querySelector("main");
+  main.innerHTML = "";
+  const input = document.getElementById("input").value;
+  viewCountry(input);
+});
