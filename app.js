@@ -97,3 +97,28 @@ const renderError = (msg) => {
     errorHtml.remove();
   }, 5000);
 };
+
+const viewCountry = async (countryName) => {
+  try {
+    const data = await getCountry(countryName);
+
+    renderCountry(data);
+    console.log(data.borders);
+
+    // const neighbour1 = await getNeighbour(data.border[0]);
+    // renderCountry(neighbour1, "neighbour")
+    // const neighbour2 = await getNeighbour(data.border[1]);
+    // renderCountry(neighbour2, "neighbour")
+
+    if (data.borders) {
+      data.border.forEach(async (item) => {
+        const neighbour = await getNeighbour(item);
+        renderCountry(neighbour, "neighbour");
+      });
+    } else {
+      throw new Error("No Neighbour!");
+    }
+  } catch (error) {
+    renderError(error.message);
+  }
+};
